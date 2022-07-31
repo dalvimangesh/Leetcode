@@ -5,7 +5,7 @@ public:
     
     int half;
     
-    vector<vector<int> > dp;
+    int dp[2000][2000];
     
     int solve(int i,int j, string &s){
         
@@ -40,7 +40,11 @@ public:
         
         string newstring = word1 + word2;
         
-        dp.resize( newstring.size(), vector<int>( newstring.size() , -1 ) );
+        for(int i=0;i< (int) newstring.size();i++){
+            for(int j=0;j<(int) newstring.size();j++){
+                dp[i][j] = -1;
+            }
+        }
         
         solve( 0, newstring.size()-1, newstring );
         
