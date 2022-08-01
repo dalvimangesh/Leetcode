@@ -20,18 +20,20 @@ public:
             for(char c:word){
                 
                 if( keyValue.find(c) == keyValue.end() ){
-                    flag=true; break;
+                    flag = true; 
+                    break;
                 }
                 
                 cur += keyValue[c];
                 
             }
             
-            if(flag) continue;
+            if(flag) {
+                continue;
+            }
             
-            
-            // cout << word << endl;
-            // cout << cur << endl;
+            cout << word << endl;
+            cout << cur << endl;
             
             m[cur]++;
         }
