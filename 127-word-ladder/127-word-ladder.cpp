@@ -23,6 +23,18 @@ public:
         
         q.push(beginWord);
         
+        bool present = false;
+        
+        for(int i=0;i<n;i++){
+            
+            if(wordList[i]==endWord){
+                present=true;
+            }
+            
+        }
+        
+        if(present==false) return 0;
+        
         while(q.size()){
             
             int curLevel = q.size();
