@@ -5,7 +5,7 @@ public:
     
     int mod;
     
-    int solve( int cur, int n, int c1, int c2, int c3){
+    int solve( int cur, int n, int c1 = 0, int c2 = 0, int c3 = 0){
         
         if(cur>=n) return 1;
         
@@ -47,7 +47,7 @@ public:
         
         // memset(dp,-1,sizeof(dp));
         
-        return solve(0,n,0,0,0);
+        return solve(0,n);
         
     }
 };
