@@ -4,25 +4,37 @@ public:
         
         int n = (int) nums.size();
         
-        multiset<int> ms;
-        
         vector<int> ans;
         
+        deque<int> dq;
+        
         for(int i=0;i<k;i++){
-            ms.insert(nums[i]);
+            
+            while(dq.size() and nums[i]>nums[dq.back()]){
+                dq.pop_back();
+            }
+            
+            dq.push_back(i);
         }
         
-        ans.push_back(*ms.rbegin());
+        ans.push_back(nums[dq.front()]);
         
         for(int i=k;i<n;i++){
             
-            ms.erase( ms.find(nums[i-k]) );
-            ms.insert(nums[i]);
-            ans.push_back(*ms.rbegin());
+            while(dq.size() and nums[i]>nums[dq.back()]){
+                dq.pop_back();
+            }
             
+            while(dq.size() and ( i - dq.front() >= k ) ){
+                dq.pop_front();
+            }
+            
+            dq.push_back(i);
+            
+            ans.push_back(nums[dq.front()]);
         }
         
         return ans;
         
     }
-};
+}; 
