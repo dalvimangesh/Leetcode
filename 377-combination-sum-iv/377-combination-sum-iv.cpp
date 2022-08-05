@@ -25,7 +25,7 @@ public:
     
     int combinationSum4(vector<int>& nums, int target) {
         
-        memset(dp,-1,sizeof(dp));
+        for(int i=0;i<=target;i++) dp[i] = -1;
         
         return solve( target, nums );
         
