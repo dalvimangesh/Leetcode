@@ -18,11 +18,6 @@ public:
             return NULL;
         }
         
-        if( s == e ){
-            TreeNode* temp = new TreeNode( nums[s] );
-            return temp;
-        }
-        
         int mid = (s+e)/2;
         
         TreeNode* left = solve( s, mid-1, nums );
