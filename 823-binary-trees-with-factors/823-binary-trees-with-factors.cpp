@@ -2,11 +2,13 @@ class Solution {
 public:
     int numFactoredBinaryTrees(vector<int>& arr) {
         
+#define int long long
+        
         sort(arr.begin(),arr.end());
         
-        map<long long, long long> pos;
+        map<int, int> pos;
         
-        long long ans = 0 ; int mod = 1e9 + 7;
+        int ans = 0 ; int mod = 1e9 + 7;
         
         int n = (int) arr.size();
         
@@ -14,13 +16,13 @@ public:
             
             int num = arr[i];
             
-            long long cur = 0;
+            int cur = 0;
             
             for(int j=1;j*j<=num;j++) {
                 
                 if( num % j == 0 ){
                     
-                    long long temp = ( 1LL * pos[j] * pos[ num/j ] ) % mod;
+                    int temp = ( 1LL * pos[j] * pos[ num/j ] ) % mod;
                     
                     cur += temp ;
                     
@@ -45,6 +47,8 @@ public:
         }
         
         return ans;
+
+#undef int
         
     }
 };
