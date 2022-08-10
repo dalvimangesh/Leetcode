@@ -2,7 +2,7 @@ class Solution {
 public:
     int numFactoredBinaryTrees(vector<int>& arr) {
         
-#define int long long
+#define int int64_t
         
         sort(arr.begin(),arr.end());
         
