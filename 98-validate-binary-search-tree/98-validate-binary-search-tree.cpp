@@ -22,9 +22,9 @@ public:
             return false;
         }
         
-        bool left = solve( root->right ,  max( { 1LL * root->val, l } ) , r );
+        bool left = solve( root->right ,   root->val , r );
         
-        bool right = solve( root->left , l , min( { 1LL * root->val, r } ));
+        bool right = solve( root->left , l , root->val );
         
         return (left and right);
     }
