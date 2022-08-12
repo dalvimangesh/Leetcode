@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    int dp[(1<<16)+1];
+    int dp[16][(1<<16)+1];
     
     int solve( int i,  int &mask , int &n){
         
@@ -11,9 +11,9 @@ public:
         
         int ans = 0;
         
-        if( dp[mask] != -1 ){
+        if( dp[i][mask] != -1 ){
             
-            return dp[mask];
+            return dp[i][mask];
             
         }
         
@@ -33,7 +33,7 @@ public:
             
         }
         
-        return  dp[mask] = ans;
+        return  dp[i][mask] = ans;
     }
     
     
