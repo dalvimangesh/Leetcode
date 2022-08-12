@@ -1,6 +1,8 @@
 class Solution {
 public:
     
+    int dp[(1<<16)+1];
+    
     int solve( int i,  int &mask , int n){
         
         if( i==(n+1) ){
@@ -8,6 +10,12 @@ public:
         }
         
         int ans = 0;
+        
+        if( dp[mask] != -1 ){
+            
+            return dp[mask];
+            
+        }
         
         for(int j=1;j<=n;j++){
             
@@ -25,13 +33,15 @@ public:
             
         }
         
-        return ans;
+        return  dp[mask] = ans;
     }
     
     
     int countArrangement(int n) {
         
         int num = 0;
+        
+        memset(dp,-1,sizeof(dp));
         
         return solve( 1, num , n );
         
