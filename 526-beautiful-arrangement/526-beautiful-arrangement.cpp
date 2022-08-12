@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    int solve( int i, map<int,vector<int> > &m , set<int> &s ,int n){
+    int solve( int i,  int &mask , int n){
         
         if( i==(n+1) ){
             return 1;
@@ -9,12 +9,18 @@ public:
         
         int ans = 0;
         
-        for( int ele:m[i] ){
+        for(int j=1;j<=n;j++){
             
-            if( ( s.find(ele) == s.end() )  ) {
-                s.insert(ele);
-                ans += solve(i+1, m, s ,n);
-                s.erase(ele);
+            if( ( mask >> j ) & 1 ) continue;
+            
+            if( ( i % j == 0 ) or ( j % i == 0) ){
+                
+                mask |= (1<<j);
+                
+                ans += solve(i+1,mask,n);
+                
+                mask = (mask & (~( 1 << j ) ) );
+                
             }
             
         }
@@ -25,24 +31,9 @@ public:
     
     int countArrangement(int n) {
         
-        map<int,vector<int> > m;
+        int num = 0;
         
-        for(int i=1;i<=n;i++){
-            for(int j=1;j<=n;j++){
-                if( (i % j == 0) or (j % i == 0) ){
-                    m[i].push_back(j);
-                    // cout << j << " ";
-                }
-            }
-            // cout << endl;
-        }
-        
-        set<int> s;
-        
-        return solve( 1, m, s, n );
+        return solve( 1, num , n );
         
     }
 };
-
-
-
