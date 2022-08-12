@@ -3,7 +3,7 @@ public:
     
     int dp[(1<<16)+1];
     
-    int solve( int i,  int mask , int n){
+    int solve( int i,  int &mask , int &n){
         
         if( i==(n+1) ){
             return 1;
