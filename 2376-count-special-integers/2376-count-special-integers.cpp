@@ -1,11 +1,17 @@
 class Solution {
 public:
     
+    int dp[10][(1<<10)][2][2];
+
     int solve( int i, int mask, bool tight, bool trailing, string &s) {
         
         if( i == (int) s.size() ){
             if(mask) return 1;
             return 0;
+        }
+        
+        if( dp[i][mask][tight][trailing] != -1 ) {
+            return dp[i][mask][tight][trailing];
         }
         
         int ans = 0;
@@ -31,12 +37,14 @@ public:
             
         }
         
-        return ans;
+        return dp[i][mask][tight][trailing] = ans;
     }
     
     int countSpecialNumbers(int n) {
         
         string s = to_string(n);
+        
+        memset(dp,-1,sizeof(dp));
         
         return solve( 0, 0, true ,true, s );
         
