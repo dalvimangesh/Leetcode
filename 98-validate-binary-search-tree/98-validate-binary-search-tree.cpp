@@ -1,6 +1,5 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
+/* 
+* struct TreeNode {
  *     int val;
  *     TreeNode *left;
  *     TreeNode *right;
@@ -11,28 +10,26 @@
  */
 class Solution {
 public:
-
+    
     bool solve(TreeNode* root, long long l, long long r ) {
         
         if( root == NULL ) {
             return true;
         }
         
-        if(  (1LL * root->val <= l) or (1LL * root->val >= r)  ) {
+        if( ( (long long) root->val >= r) or ( (long long) root->val <= l) ){
             return false;
         }
         
-        bool left = solve( root->right ,   root->val , r );
+        return solve( root->left, l, root->val ) and solve( root->right, root->val, r );
         
-        bool right = solve( root->left , l , root->val );
-        
-        return (left and right);
     }
     
     
     bool isValidBST(TreeNode* root) {
         
-        return solve( root, (long long) INT_MIN + INT_MIN, (long long) INT_MAX + INT_MAX);
+        return solve( root, LONG_MIN , LONG_MAX );
         
     }
 };
+
