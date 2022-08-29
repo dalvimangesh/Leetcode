@@ -17,9 +17,9 @@ public:
         
         int ans = solve(i+1,v);
         
-        vector<int> temp = {v[i][1],0,0};
+        // vector<int> temp = {v[i][1],0,0};
         
-        int next = lower_bound( v.begin(), v.end(), temp ) - v.begin();
+        int next = lower_bound( v.begin(), v.end(), vector<int> {v[i][1],0,0} ) - v.begin();
         
         ans  = max( ans , v[i][2] + solve(next, v) );
         
