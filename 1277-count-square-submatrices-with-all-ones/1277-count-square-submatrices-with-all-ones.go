@@ -1,6 +1,4 @@
 
-var dp[301][301] int
-
 func min(a, b, c int) int {
     
     if(a <= b && a <= c) {
@@ -11,7 +9,7 @@ func min(a, b, c int) int {
     return c
 }
 
-func solve(i int, j int, matrix [][] int) int {
+func solve(i int, j int, matrix [][] int, dp [][] int) int {
     
     var n, m int = len(matrix), len(matrix[0])
     
@@ -29,9 +27,9 @@ func solve(i int, j int, matrix [][] int) int {
         return 0
     }
     
-    var right int = solve(i, j+1, matrix)
-    var down int = solve(i+1, j, matrix)
-    var diagonal int = solve(i+1, j+1, matrix)
+    var right int = solve(i, j+1, matrix, dp)
+    var down int = solve(i+1, j, matrix, dp)
+    var diagonal int = solve(i+1, j+1, matrix, dp)
     
     dp[i][j] = 1 + min(right, down, diagonal)
     
@@ -45,17 +43,24 @@ func countSquares(matrix [][]int) int {
     
     var n, m int = len(matrix), len(matrix[0])
     
+    var dp[][] int
+    
     for i := 0; i < n; i++ {
+        
+        var tempDp [] int
+        
         for j := 0; j < m; j++ {
-            dp[i][j] = -1   
-        }    
+            tempDp = append(tempDp, -1)   
+        }
+        
+        dp = append(dp, tempDp)
     }
     
     var ans int = 0
     
     for i := 0; i < n; i++ {
         for j := 0; j < m; j++ {
-            ans += solve(i, j, matrix) 
+            ans += solve(i, j, matrix, dp) 
         }    
     }
     
